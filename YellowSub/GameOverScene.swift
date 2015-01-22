@@ -11,6 +11,7 @@ import SpriteKit
 class GameOverScene: SKScene {
     
     var viewController:GameViewController?
+    var colorBackground:SKColor! = SKColor(red: 12/255, green: 77/255, blue: 105/255, alpha: 1.0)
     
     //Init
     override func didMoveToView(view: SKView) {
@@ -30,7 +31,7 @@ class GameOverScene: SKScene {
         spriteFace.runAction(SKAction.moveToY(spriteFace.size.height/2, duration: 0.7))
         self.addChild(spriteFace)
         
-        self.backgroundColor = SKColor(red: 20/255, green: 129/255, blue: 197/255, alpha: 1.0)
+        self.backgroundColor = self.colorBackground
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

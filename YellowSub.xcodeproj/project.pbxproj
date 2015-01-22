@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523D3F5F1A6D7C0800F6749A /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D3F5E1A6D7C0800F6749A /* GameOverScene.swift */; };
+		523D3F621A6DAAAE00F6749A /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 523D3F601A6DAAAE00F6749A /* bubble.png */; };
+		523D3F631A6DAAAE00F6749A /* bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 523D3F611A6DAAAE00F6749A /* bubble@2x.png */; };
+		523D3F6D1A6DB21F00F6749A /* SodaBubbles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 523D3F6C1A6DB21F00F6749A /* SodaBubbles.sks */; };
+		523D3F6F1A6DC11D00F6749A /* deepsea.png in Resources */ = {isa = PBXBuildFile; fileRef = 523D3F6E1A6DC11D00F6749A /* deepsea.png */; };
+		523D3F721A6DC6C600F6749A /* SmokeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 523D3F701A6DC6C600F6749A /* SmokeScene.sks */; };
+		523D3F731A6DC6C600F6749A /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 523D3F711A6DC6C600F6749A /* spark.png */; };
 		526437E21A66DB7200F2356E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526437E11A66DB7100F2356E /* AppDelegate.swift */; };
 		526437E41A66DB7200F2356E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 526437E31A66DB7200F2356E /* GameScene.sks */; };
 		526437E61A66DB7200F2356E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526437E51A66DB7200F2356E /* GameScene.swift */; };
@@ -15,6 +22,16 @@
 		526437ED1A66DB7200F2356E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526437EC1A66DB7200F2356E /* Images.xcassets */; };
 		526437F01A66DB7200F2356E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526437EE1A66DB7200F2356E /* LaunchScreen.xib */; };
 		526437FC1A66DB7200F2356E /* YellowSubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526437FB1A66DB7200F2356E /* YellowSubTests.swift */; };
+		52C2869E1A6FDE84007FAFEC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C2869D1A6FDE84007FAFEC /* Constant.swift */; };
+		52C286A01A6FEA30007FAFEC /* footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C2869F1A6FEA30007FAFEC /* footer.png */; };
+		52C286A41A701501007FAFEC /* coralfooter.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C286A31A701501007FAFEC /* coralfooter.png */; };
+		52C286AA1A705DA8007FAFEC /* jellyfish.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C286A91A705DA8007FAFEC /* jellyfish.png */; };
+		52C358561A70FDB7009B6975 /* coralOrangeLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C358541A70FDB7009B6975 /* coralOrangeLeft.png */; };
+		52C358571A70FDB7009B6975 /* coralOrangeRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C358551A70FDB7009B6975 /* coralOrangeRight.png */; };
+		52C3585B1A70FDF2009B6975 /* coralRedRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C358591A70FDF2009B6975 /* coralRedRight.png */; };
+		52C3585D1A70FEE4009B6975 /* coralRedLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C3585C1A70FEE4009B6975 /* coralRedLeft.png */; };
+		52C605271A6E9E3100318C7A /* leftfish1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C605251A6E9E3100318C7A /* leftfish1.png */; };
+		52C819501A6D729E0027017C /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52C8194F1A6D729E0027017C /* GameOverScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		523D3F5E1A6D7C0800F6749A /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		523D3F601A6DAAAE00F6749A /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		523D3F611A6DAAAE00F6749A /* bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble@2x.png"; sourceTree = "<group>"; };
+		523D3F6C1A6DB21F00F6749A /* SodaBubbles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SodaBubbles.sks; sourceTree = "<group>"; };
+		523D3F6E1A6DC11D00F6749A /* deepsea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deepsea.png; sourceTree = "<group>"; };
+		523D3F701A6DC6C600F6749A /* SmokeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeScene.sks; sourceTree = "<group>"; };
+		523D3F711A6DC6C600F6749A /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		526437DC1A66DB7100F2356E /* YellowSub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellowSub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526437E01A66DB7100F2356E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		526437E11A66DB7100F2356E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +64,16 @@
 		526437F51A66DB7200F2356E /* YellowSubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YellowSubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		526437FA1A66DB7200F2356E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		526437FB1A66DB7200F2356E /* YellowSubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YellowSubTests.swift; sourceTree = "<group>"; };
+		52C2869D1A6FDE84007FAFEC /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		52C2869F1A6FEA30007FAFEC /* footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = footer.png; sourceTree = "<group>"; };
+		52C286A31A701501007FAFEC /* coralfooter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coralfooter.png; sourceTree = "<group>"; };
+		52C286A91A705DA8007FAFEC /* jellyfish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jellyfish.png; sourceTree = "<group>"; };
+		52C358541A70FDB7009B6975 /* coralOrangeLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coralOrangeLeft.png; sourceTree = "<group>"; };
+		52C358551A70FDB7009B6975 /* coralOrangeRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coralOrangeRight.png; sourceTree = "<group>"; };
+		52C358591A70FDF2009B6975 /* coralRedRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coralRedRight.png; sourceTree = "<group>"; };
+		52C3585C1A70FEE4009B6975 /* coralRedLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coralRedLeft.png; sourceTree = "<group>"; };
+		52C605251A6E9E3100318C7A /* leftfish1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftfish1.png; sourceTree = "<group>"; };
+		52C8194F1A6D729E0027017C /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +115,13 @@
 		526437DE1A66DB7100F2356E /* YellowSub */ = {
 			isa = PBXGroup;
 			children = (
+				52C2869D1A6FDE84007FAFEC /* Constant.swift */,
+				52C819531A6D77A80027017C /* Model */,
+				52C819521A6D779A0027017C /* Controller */,
+				52C819511A6D77890027017C /* View */,
 				526437E11A66DB7100F2356E /* AppDelegate.swift */,
-				526437E31A66DB7200F2356E /* GameScene.sks */,
-				526437E51A66DB7200F2356E /* GameScene.swift */,
-				526437E71A66DB7200F2356E /* GameViewController.swift */,
-				526437E91A66DB7200F2356E /* Main.storyboard */,
-				526437EC1A66DB7200F2356E /* Images.xcassets */,
 				526437EE1A66DB7200F2356E /* LaunchScreen.xib */,
+				52C605291A6E9E3900318C7A /* Images */,
 				526437DF1A66DB7100F2356E /* Supporting Files */,
 			);
 			path = YellowSub;
@@ -116,6 +150,55 @@
 				526437FA1A66DB7200F2356E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52C605291A6E9E3900318C7A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				52C3585C1A70FEE4009B6975 /* coralRedLeft.png */,
+				52C358591A70FDF2009B6975 /* coralRedRight.png */,
+				52C358541A70FDB7009B6975 /* coralOrangeLeft.png */,
+				52C358551A70FDB7009B6975 /* coralOrangeRight.png */,
+				52C286A91A705DA8007FAFEC /* jellyfish.png */,
+				52C286A31A701501007FAFEC /* coralfooter.png */,
+				52C2869F1A6FEA30007FAFEC /* footer.png */,
+				523D3F711A6DC6C600F6749A /* spark.png */,
+				523D3F601A6DAAAE00F6749A /* bubble.png */,
+				523D3F611A6DAAAE00F6749A /* bubble@2x.png */,
+				526437EC1A66DB7200F2356E /* Images.xcassets */,
+				52C605251A6E9E3100318C7A /* leftfish1.png */,
+				523D3F6E1A6DC11D00F6749A /* deepsea.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		52C819511A6D77890027017C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				523D3F6C1A6DB21F00F6749A /* SodaBubbles.sks */,
+				526437E51A66DB7200F2356E /* GameScene.swift */,
+				523D3F5E1A6D7C0800F6749A /* GameOverScene.swift */,
+				523D3F701A6DC6C600F6749A /* SmokeScene.sks */,
+				52C8194F1A6D729E0027017C /* GameOverScene.sks */,
+				526437E31A66DB7200F2356E /* GameScene.sks */,
+				526437E91A66DB7200F2356E /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		52C819521A6D779A0027017C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				526437E71A66DB7200F2356E /* GameViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		52C819531A6D77A80027017C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,10 +281,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523D3F731A6DC6C600F6749A /* spark.png in Resources */,
 				526437F01A66DB7200F2356E /* LaunchScreen.xib in Resources */,
+				52C3585B1A70FDF2009B6975 /* coralRedRight.png in Resources */,
 				526437ED1A66DB7200F2356E /* Images.xcassets in Resources */,
+				52C605271A6E9E3100318C7A /* leftfish1.png in Resources */,
+				52C286A01A6FEA30007FAFEC /* footer.png in Resources */,
+				523D3F631A6DAAAE00F6749A /* bubble@2x.png in Resources */,
+				523D3F721A6DC6C600F6749A /* SmokeScene.sks in Resources */,
+				52C358561A70FDB7009B6975 /* coralOrangeLeft.png in Resources */,
+				523D3F6D1A6DB21F00F6749A /* SodaBubbles.sks in Resources */,
 				526437E41A66DB7200F2356E /* GameScene.sks in Resources */,
+				52C819501A6D729E0027017C /* GameOverScene.sks in Resources */,
+				52C286AA1A705DA8007FAFEC /* jellyfish.png in Resources */,
 				526437EB1A66DB7200F2356E /* Main.storyboard in Resources */,
+				52C3585D1A70FEE4009B6975 /* coralRedLeft.png in Resources */,
+				523D3F621A6DAAAE00F6749A /* bubble.png in Resources */,
+				52C286A41A701501007FAFEC /* coralfooter.png in Resources */,
+				523D3F6F1A6DC11D00F6749A /* deepsea.png in Resources */,
+				52C358571A70FDB7009B6975 /* coralOrangeRight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523D3F5F1A6D7C0800F6749A /* GameOverScene.swift in Sources */,
 				526437E61A66DB7200F2356E /* GameScene.swift in Sources */,
+				52C2869E1A6FDE84007FAFEC /* Constant.swift in Sources */,
 				526437E81A66DB7200F2356E /* GameViewController.swift in Sources */,
 				526437E21A66DB7200F2356E /* AppDelegate.swift in Sources */,
 			);
@@ -413,6 +513,7 @@
 				526438011A66DB7200F2356E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		526438021A66DB7200F2356E /* Build configuration list for PBXNativeTarget "YellowSubTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +522,7 @@
 				526438041A66DB7200F2356E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
