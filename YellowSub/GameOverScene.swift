@@ -25,7 +25,7 @@ class GameOverScene: SKScene {
         nodeLabel.runAction(SKAction.fadeAlphaTo(1.0, duration: 1.0))
         self.addChild(nodeLabel)
         
-        let spriteFace = SKSpriteNode(imageNamed: "booGameOver")
+        let spriteFace = SKSpriteNode(imageNamed: "diver")
         spriteFace.size = CGSizeMake(spriteFace.size.width/2, spriteFace.size.height/2)
         spriteFace.position = CGPointMake(self.frame.width/2, -spriteFace.size.height/2)
         spriteFace.runAction(SKAction.moveToY(spriteFace.size.height/2, duration: 0.7))
