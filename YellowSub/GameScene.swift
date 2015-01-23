@@ -15,33 +15,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var viewController:GameViewController?
     
     //Game Variables
-    var colorBackground:SKColor! = SKColor(red: 14/255, green: 98/255, blue: 190/255, alpha: 1.0)
+//    var colorBackground:SKColor! = SKColor(red: 14/255, green: 98/255, blue: 190/255, alpha: 1.0)
+    var colorBackground:SKColor! = SKColor(red: 12/255, green: 77/255, blue: 105/255, alpha: 1.0)
     var start:Bool = false
     
-    let categoryCopter:UInt32   = 0x1 << 0
+    let categoryHero:UInt32   = 0x1 << 0
     let categoryEnemy:UInt32    = 0x1 << 1
     let categoryScreen:UInt32   = 0x1 << 2
     
     let linearDamping:CGFloat = 0.65
     let angularDamping:CGFloat = 1.0
-    var gravityX:CGFloat = 6
-    let impulseY:CGFloat = 4.0
-    let impulseX:CGFloat = 10.0
+    var gravityX:CGFloat = 6.0
+    let impulseY:CGFloat = 2.0 //4.0
+    let impulseX:CGFloat = 5.0 //10.0
     var lastYposition:CGFloat = 300.0
     let ditanceBetweenBars:CGFloat = 175.0
     let ditanceFromBarToBar:CGFloat = 300.0
     
     let horizontalGravity: CGFloat = 0.0
-    let verticalGravity: CGFloat = 0.1
+    let verticalGravity: CGFloat = 0.4
     
     //Nodes
     //SKSCENE
     let nodePoints = SKLabelNode()
-    let nodeClouds = SKNode()
+    let nodeJellyfish = SKNode()
     let nodeWorld = SKNode()
     let nodeEnemies = SKNode()
-    var nodeCopter = SKNode()
-    var spriteCopter:SKSpriteNode!
+    var nodeHero = SKNode()
+    var spriteHero:SKSpriteNode!
     
     //Bubble scene
     var bubbleEmitter = SKEmitterNode()
@@ -53,15 +54,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Init
     override func didMoveToView(view: SKView) {
-        
         self.startWorld()
         self.initBubbleEmitter()
         self.initPhysics()
         self.initFooter()
-        self.startDiver()
-        //self.startJellyfish()
+        self.startHero()
+        self.startJellyfish()
         self.startEnemies()
         nodeWorld.addChild(nodeEnemies)
+        
+        view.showsPhysics = true
     }
     
     func initBubbleEmitter() {
@@ -77,8 +79,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func initPhysics() {
         self.physicsWorld.contactDelegate = self
         
-        self.physicsWorld.gravity = CGVectorMake(self.horizontalGravity, self.verticalGravity)
-        //self.physicsWorld.gravity = CGVectorMake(gravityX, 0.0)
+//        self.physicsWorld.gravity = CGVectorMake(self.horizontalGravity, self.verticalGravity)
+        self.physicsWorld.gravity = CGVectorMake(gravityX, 0.0)
         
         let borderBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         borderBody.categoryBitMask = categoryScreen
@@ -104,150 +106,108 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let spriteGround = SKSpriteNode(imageNamed: "coralfooter")
         spriteGround.zPosition = 1
         spriteGround.size = CGSizeMake(spriteGround.size.width/2, spriteGround.size.height/4)
-        spriteGround.position = CGPointMake(0, -30)
+        spriteGround.position = CGPointMake(0, -50)
         nodeWorld.addChild(spriteGround)
     }
     
     //Create Diver
-    func startDiver() {
-        nodeCopter.position = CGPointMake(0,0)
-        nodeCopter.zPosition = 10
+    func startHero() {
+        nodeHero.position = CGPointMake(0,0)
+        nodeHero.zPosition = 10
         
-        spriteCopter = SKSpriteNode(imageNamed: "diver")
-        spriteCopter.size = CGSizeMake(spriteCopter.size.width/3, spriteCopter.size.height/3)
-        spriteCopter.position = CGPointMake(0,0)
+        spriteHero = SKSpriteNode(imageNamed: "diver")
+        spriteHero.size = CGSizeMake(spriteHero.size.width/3, spriteHero.size.height/3)
+        spriteHero.position = CGPointMake(0,0)
         
-        nodeCopter.addChild(spriteCopter)
-        nodeWorld.addChild(nodeCopter)
+        nodeHero.addChild(spriteHero)
+        nodeWorld.addChild(nodeHero)
         
-        let nodeBody = SKPhysicsBody(circleOfRadius: 0.9*spriteCopter.frame.size.width/2)
+        let nodeBody = SKPhysicsBody(circleOfRadius: 0.9*spriteHero.frame.size.width/4)
         nodeBody.linearDamping = linearDamping
         nodeBody.angularDamping = angularDamping
         nodeBody.allowsRotation = true
         nodeBody.affectedByGravity = false
-        nodeBody.categoryBitMask = categoryCopter;
+        nodeBody.categoryBitMask = categoryHero;
         nodeBody.contactTestBitMask = categoryScreen | categoryEnemy;
-        nodeCopter.physicsBody = nodeBody;
+        nodeHero.physicsBody = nodeBody;
         
     }
     
-    //Create clouds
+    //Create Jelly fish
     func startJellyfish() {
-        nodeClouds.position = CGPointMake(-self.size.width/2,-self.size.height/2);
-        self.addChild(nodeClouds)
+
+        let sizeX = UInt32(40)
+        var randomX = CGFloat(arc4random_uniform(sizeX))
         
-        let cloud = SKSpriteNode(imageNamed: "jellyfish")
-        cloud.size = CGSize(width:cloud.size.width/2, height:cloud.size.height/2)
-        cloud.position = CGPoint(x: 220, y: cloud.size.height/2)
-        nodeClouds.addChild(cloud)
-        cloud.runAction(SKAction.repeatActionForever(SKAction.moveByX(0, y: -self.size.height-cloud.size.height, duration: 5 )))
+        nodeJellyfish.position = CGPointMake(-self.size.width/2,-self.size.height/2);
+        self.addChild(nodeJellyfish)
         
-        let cloud2 = SKSpriteNode(imageNamed: "jellyfish")
-        cloud2.size = CGSize(width:cloud2.size.width/2, height:cloud2.size.height/2)
-        cloud2.position = CGPoint(x: 95, y: cloud.size.height/2+160)
-        nodeClouds.addChild(cloud2)
-        cloud2.runAction(SKAction.repeatActionForever(SKAction.moveByX(0, y: -self.size.height-cloud.size.height, duration: 5 )))
+        let jellyfish = SKSpriteNode(imageNamed: "jellyfish")
+        jellyfish.size = CGSize(width:jellyfish.size.width/2, height:jellyfish.size.height/2)
+        jellyfish.position = CGPoint(x:randomX, y: jellyfish.size.height/2)
+        let borderBody:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, jellyfish.size.width, jellyfish.size.height))
+        borderBody.dynamic = false
+        borderBody.categoryBitMask = categoryEnemy
+        borderBody.affectedByGravity = false
+        jellyfish.anchorPoint = CGPointMake(0, 0)
+        jellyfish.physicsBody = borderBody
+        nodeJellyfish.addChild(jellyfish)
+        jellyfish.runAction(SKAction.repeatActionForever(SKAction.moveByX(0, y: -self.size.height-jellyfish.size.height, duration: 8 )))
         
-        let cloud3 = SKSpriteNode(imageNamed: "jellyfish")
-        cloud3.size = CGSize(width:cloud3.size.width/2, height:cloud3.size.height/2)
-        cloud3.position = CGPoint(x: 220, y: cloud.size.height/2+160*2)
-        nodeClouds.addChild(cloud3)
-        cloud3.runAction(SKAction.repeatActionForever(SKAction.moveByX(0, y: -self.size.height-cloud.size.height, duration: 5 )))
-        
-        let cloud4 = SKSpriteNode(imageNamed: "jellyfish")
-        cloud4.size = CGSize(width:cloud4.size.width/2, height:cloud4.size.height/2)
-        cloud4.position = CGPoint(x: 95, y: cloud.size.height/2+160*3)
-        nodeClouds.addChild(cloud4)
-        cloud4.runAction(SKAction.repeatActionForever(SKAction.moveByX(0, y: -self.size.height-cloud.size.height, duration: 5 )))
+        let jellyfish2 = SKSpriteNode(imageNamed: "jellyfish")
+        jellyfish2.size = CGSize(width:jellyfish2.size.width/2, height:jellyfish2.size.height/2)
+        jellyfish2.position = CGPoint(x: self.frame.width-randomX*1.5, y: jellyfish2.size.height/2+160)
+        let borderBody2:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, jellyfish2.size.width, jellyfish2.size.height))
+        borderBody2.dynamic = false
+        borderBody2.categoryBitMask = categoryEnemy
+        borderBody2.affectedByGravity = false
+        jellyfish.anchorPoint = CGPointMake(0, 0)
+        jellyfish.physicsBody = borderBody
+        nodeJellyfish.addChild(jellyfish2)
+        jellyfish2.runAction(SKAction.repeatActionForever(SKAction.moveByX(0, y: -self.size.height-jellyfish2.size.height, duration: 8 )))
     }
 
     
     func startEnemies(){
         
-        // Orange Corals
-        var lastYpositionForOrangeCorals = lastYposition/2
+        // Corals
         for index in 1...10 {
             let randomX:CGFloat = -(CGFloat(Int(arc4random_uniform(160)))+160) //-320 to -160  ---  -160 to 0
             var nodeEnemy = SKNode()
-
             
-            let spriteBarLeft = SKSpriteNode(imageNamed:"coralOrangeLeft")
-            spriteBarLeft.size = CGSizeMake(spriteBarLeft.size.width/2, spriteBarLeft.size.height/2)
-            spriteBarLeft.position = CGPointMake(randomX, 0)
-            spriteBarLeft.zPosition = 5
-//            let borderBody:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, spriteBarLeft.size.width, spriteBarLeft.size.height))
-            let borderBody:SKPhysicsBody = SKPhysicsBody(rectangleOfSize: spriteBarLeft.size)
-//            let borderBody:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, 250, 300))
-            
+            // left
+            let spriteLeft = SKSpriteNode(imageNamed:"coralOrangeLeft")
+            spriteLeft.size = CGSizeMake(spriteLeft.size.width/2, spriteLeft.size.height/2)
+            spriteLeft.position = CGPointMake(randomX,0)
+            spriteLeft.zPosition = 5
+            let borderBody:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, spriteLeft.size.width, spriteLeft.size.height))
             borderBody.dynamic = false
             borderBody.categoryBitMask = categoryEnemy
             borderBody.affectedByGravity = false
-            spriteBarLeft.name = "coralRedLeft"
-            spriteBarLeft.anchorPoint = CGPointMake(0, 0)
-            spriteBarLeft.physicsBody = borderBody
-            spriteBarLeft.color = UIColor.redColor()
-            nodeEnemy.addChild(spriteBarLeft)
+            spriteLeft.name = "coralOrangeLeft"
+            spriteLeft.anchorPoint = CGPointMake(0, 0)
+            spriteLeft.physicsBody = borderBody
+            nodeEnemy.addChild(spriteLeft)
             
-            let spriteBarRight = SKSpriteNode(imageNamed:"coralOrangeRight")
-            spriteBarRight.size = CGSizeMake(spriteBarRight.size.width/2, spriteBarRight.size.height/2)
-            spriteBarRight.position = CGPointMake(spriteBarLeft.position.x + spriteBarLeft.size.width + ditanceBetweenBars,0)
-            spriteBarRight.zPosition = 5
-//            let borderBodyRight:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, spriteBarRight.size.width, spriteBarRight.size.height))
-            let borderBodyRight:SKPhysicsBody = SKPhysicsBody(rectangleOfSize: spriteBarRight.size)
-//            let borderBodyRight:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, 250, 300))
+            // right
+            let spriteRight = SKSpriteNode(imageNamed:"coralOrangeRight")
+            spriteRight.size = CGSizeMake(spriteRight.size.width/2, spriteRight.size.height/2)
+            spriteRight.position = CGPointMake(spriteLeft.position.x + spriteLeft.size.width + ditanceBetweenBars,0)
+            spriteRight.zPosition = 5
+            let borderBodyRight:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, spriteRight.size.width, spriteRight.size.height))
             borderBodyRight.dynamic = false
             borderBodyRight.categoryBitMask = categoryEnemy
             borderBodyRight.affectedByGravity = false
-            spriteBarRight.name = "coralRedRight"
-            spriteBarRight.anchorPoint = CGPointMake(0, 0)
-            spriteBarRight.physicsBody = borderBodyRight
-            nodeEnemy.position = CGPointMake(0, lastYpositionForOrangeCorals)
-            nodeEnemy.addChild(spriteBarRight)
+            spriteRight.name = "coralOrangeLeft"
+            spriteRight.anchorPoint = CGPointMake(0, 0)
+            spriteRight.physicsBody = borderBodyRight
+
+            nodeEnemy.position = CGPointMake(0, lastYposition)
+            nodeEnemy.addChild(spriteRight)
             
             nodeEnemies.addChild(nodeEnemy)
-            
-            let randomY:CGFloat = -(CGFloat(Int(arc4random_uniform(160)))+160)
-            lastYpositionForOrangeCorals += ditanceFromBarToBar
+            lastYposition += ditanceFromBarToBar
         }
-        
-//        // Red Corals
-//        var lastYpositionForRedCorals = lastYposition
-//        for index in 1...10 {
-//            let randomX:CGFloat = -(CGFloat(Int(arc4random_uniform(160)))+160) //-320 to -160  ---  -160 to 0
-//            var nodeEnemy = SKNode()
-//            
-//            let spriteBarLeft = SKSpriteNode(imageNamed:"coralRedLeft")
-//            spriteBarLeft.size = CGSizeMake(spriteBarLeft.size.width/2, spriteBarLeft.size.height/2)
-//            spriteBarLeft.position = CGPointMake(randomX,0)
-//            spriteBarLeft.zPosition = 5
-//            let borderBody:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, spriteBarLeft.size.width, spriteBarLeft.size.height))
-//            borderBody.dynamic = false
-//            borderBody.categoryBitMask = categoryEnemy
-//            borderBody.affectedByGravity = false
-//            spriteBarLeft.name = "coralRedLeft"
-//            spriteBarLeft.anchorPoint = CGPointMake(0, 0)
-//            spriteBarLeft.physicsBody = borderBody
-//            nodeEnemy.addChild(spriteBarLeft)
-//            
-//            let spriteBarRight = SKSpriteNode(imageNamed:"coralRedRight")
-//            spriteBarRight.size = CGSizeMake(spriteBarRight.size.width/2, spriteBarRight.size.height/2)
-//            spriteBarRight.position = CGPointMake(spriteBarLeft.position.x + spriteBarLeft.size.width + ditanceBetweenBars,0)
-//            spriteBarRight.zPosition = 5
-//            let borderBodyRight:SKPhysicsBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(0, 0, spriteBarRight.size.width, spriteBarRight.size.height))
-//            borderBodyRight.dynamic = false
-//            borderBodyRight.categoryBitMask = categoryEnemy
-//            borderBodyRight.affectedByGravity = false
-//            spriteBarRight.name = "coralRedRight"
-//            spriteBarRight.anchorPoint = CGPointMake(0, 0)
-//            spriteBarRight.physicsBody = borderBodyRight
-//            nodeEnemy.position = CGPointMake(0, lastYpositionForRedCorals)
-//            nodeEnemy.addChild(spriteBarRight)
-//            
-//            nodeEnemies.addChild(nodeEnemy)
-//            
-//            let randomY:CGFloat = -(CGFloat(Int(arc4random_uniform(160)))+160)
-//            lastYpositionForRedCorals += ditanceFromBarToBar
-//        }
     }
 
     // MARK: - Game Loop
@@ -255,22 +215,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //game loop
     override func didSimulatePhysics() {
         self.shouldRepositeNodes()
-        self.centerOnNode(nodeCopter)
+        self.centerOnNode(nodeHero)
         self.updatePoints()
     }
     
-    //Here we reposition out of the screen clouds/enemies to the top of the sky again
+    //Here we reposition out of the screen jellyfish/enemies to the top of the screen again
     func shouldRepositeNodes() {
-        let arrayClouds:Array<SKSpriteNode> = nodeClouds.children as Array<SKSpriteNode>
-        for spriteCloud:SKSpriteNode in arrayClouds {
-            if spriteCloud.position.y < -spriteCloud.size.height/2 {
-                spriteCloud.position.y = -spriteCloud.size.height/2 + 160*4
+        let arrayJellyfish:Array<SKSpriteNode> = nodeJellyfish.children as Array<SKSpriteNode>
+        for spriteJellyfish:SKSpriteNode in arrayJellyfish {
+            if spriteJellyfish.position.y < -spriteJellyfish.size.height/2 {
+                spriteJellyfish.position.y = -spriteJellyfish.size.height/2 + 160*4
             }
         }
         
         let arrayEnemies:Array<SKNode> = nodeEnemies.children as Array<SKNode>
         for nodeEnemy:SKNode in arrayEnemies {
-            if nodeEnemy.position.y - nodeCopter.position.y < -300.0 {
+            if nodeEnemy.position.y - nodeHero.position.y < -300.0 {
                 nodeEnemy.position.y = lastYposition + ditanceFromBarToBar;
                 lastYposition += ditanceFromBarToBar;
             }
@@ -286,35 +246,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func updatePoints() {
-        nodePoints.text = "\(Int(nodeCopter.position.y/300))"
+        nodePoints.text = "\(Int(nodeHero.position.y/300))"
     }
     
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         if !start {
-            nodeCopter.physicsBody?.affectedByGravity = true
+            nodeHero.physicsBody?.affectedByGravity = true
 //            spriteCopter.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures([SKTexture(imageNamed:"booCopter1"),SKTexture(imageNamed:"booCopter2"),SKTexture(imageNamed:"booCopter3"),SKTexture(imageNamed:"booCopter4")], timePerFrame: 0.075)))
-            nodeCopter.physicsBody?.dynamic = true
+            nodeHero.physicsBody?.dynamic = true
         }
         start = true;
         
         for touch: AnyObject in touches {
             if gravityX > 0 {
                 gravityX = -4
-                self.physicsWorld.gravity = CGVectorMake(gravityX, 0.0)
-                self.nodeCopter.physicsBody?.applyImpulse(CGVectorMake(impulseX, impulseY))
-                nodeCopter.runAction(SKAction.rotateToAngle(+3.14/10, duration: 0.3))//rigth
+                self.physicsWorld.gravity = CGVectorMake(gravityX, 0.0) //0.0
+                self.nodeHero.physicsBody?.applyImpulse(CGVectorMake(impulseX, impulseY))
+                nodeHero.runAction(SKAction.rotateToAngle(+3.14/10, duration: 0.3))//rigth
             }
             else {
                 gravityX = 4
                 self.physicsWorld.gravity = CGVectorMake(gravityX, 0.0)
-                self.nodeCopter.physicsBody?.applyImpulse(CGVectorMake(-impulseX, impulseY))
-                nodeCopter.runAction(SKAction.rotateToAngle(-3.14/10, duration: 0.3))//left
+                self.nodeHero.physicsBody?.applyImpulse(CGVectorMake(-impulseX, impulseY))
+                nodeHero.runAction(SKAction.rotateToAngle(-3.14/10, duration: 0.3))//left
             }
         }
         
-        //We have to change the height of the physics bode to make it larger when the copter goes up
-        let borderBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(-self.frame.size.width/2, -self.frame.size.height/2, self.frame.size.width, self.frame.size.height+nodeCopter.position.y))
+        //We have to change the height of the physics bode to make it larger when the hero goes up
+        let borderBody = SKPhysicsBody(edgeLoopFromRect: CGRectMake(-self.frame.size.width/2, -self.frame.size.height/2, self.frame.size.width, self.frame.size.height+nodeHero.position.y+100))
         nodeWorld.physicsBody? = borderBody
         nodeWorld.physicsBody?.categoryBitMask = categoryScreen
     }
@@ -329,7 +289,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        if firstBody.categoryBitMask == categoryCopter && (secondBody.categoryBitMask == categoryEnemy) {
+        if firstBody.categoryBitMask == categoryHero && (secondBody.categoryBitMask == categoryEnemy) {
             self.resetScene()
         }
 //        if firstBody.categoryBitMask == categoryCopter && (secondBody.categoryBitMask == categoryEnemy || secondBody.categoryBitMask == categoryScreen) {
